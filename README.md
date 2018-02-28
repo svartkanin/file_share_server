@@ -1,12 +1,12 @@
 # File server
-A simple file server for local file sharing for files and directories. When starting the server specific files and directories can be defined to be available for download.
+A simple server for file and directory sharing. When starting the server specific files and directories can be defined to be made available for download.
 
-For the download HTTPS is enabled and the HTTP authentication is required. When starting the server a username and password has to be provided. All files and directories selected for download will be zipped in memory and can then be downloaded.
+For the download by default HTTPS is enabled and HTTP authentication is required. When starting the server a username and password prompt appears. All selected files and directories for download will be zipped and optionally encrypted.
 
 ## Encryption
 By default the application uses HTTPS and HTTP authentication. The credentials have to be specified when starting the server (a prompt will appear).
 
-In addition, also GPG encryption is available for which the public key has to be send via a POST request (e.g. wget).
+In addition, GPG encryption is available for which the public key has to be send via a POST request (e.g. wget).
 
 ## Usage
 Starting the server
@@ -23,15 +23,15 @@ optional arguments:
 
 Accessing the data via the brower 
 
-`https://0.0.0.0:<port>/files/`
+`https://<ip>:<port>/files/`
 
 or via command line
 
-`wget https://0.0.0.0:<port>/files/ --no-check-certificate --user=<username> --ask-password -O files.zip`
+`wget https://<ip>:<port>/files/ --no-check-certificate --user=<username> --ask-password -O files.zip`
 
 For GPG encryption the public key can be passed with `wget`
 
-`wget https://0.0.0.0:<port>/files/ --no-check-certificate --user=<username> --ask-password -O files.gpg --post-file <public-key>`
+`wget https://<ip>:<port>/files/ --no-check-certificate --user=<username> --ask-password -O files.gpg --post-file <public-key-file>`
 
 #### Requirements
 To run the server python3, Flask and Flask HTTP authentication packages must be installed:
